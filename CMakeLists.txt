@@ -3,7 +3,9 @@
 
 add_subdirectory(glad)
 add_subdirectory(imgui)
+add_subdirectory(yojimbo)
 
+## json
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 set(JSON_Install OFF CACHE INTERNAL "")
 add_subdirectory(json)

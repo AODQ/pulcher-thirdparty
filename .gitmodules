@@ -10,3 +10,6 @@
 [submodule "glm"]
 	path = glm
 	url = https://github.com/aodq/glm
+[submodule "glfw"]
+	path = glfw
+	url = https://github.com/aodq/glfw

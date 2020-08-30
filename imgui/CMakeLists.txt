@@ -12,11 +12,9 @@ target_sources(
     src/imgui_widgets.cpp
 )
 
-target_compile_definitions(imgui PRIVATE IMGUI_IMPL_OPENGL_LOADER_GLAD)
+target_compile_definitions(imgui PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
 
-find_package(OpenGL REQUIRED)
-
-target_link_libraries(imgui PUBLIC OpenGL::OpenGL glad)
+target_link_libraries(imgui PUBLIC glad glfw ${PULCHER_GLOBAL_LINK_FLAGS})
 
 install(
   TARGETS imgui

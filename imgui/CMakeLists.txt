@@ -14,7 +14,7 @@ target_sources(
 
 target_compile_definitions(imgui PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
 
-target_link_libraries(imgui PUBLIC glad glfw ${PULCHER_GLOBAL_LINK_FLAGS})
+target_link_libraries(imgui PUBLIC glad glfw)
 
 install(
   TARGETS imgui

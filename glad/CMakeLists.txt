@@ -9,7 +9,7 @@ target_link_libraries(glad PUBLIC ${CMAKE_DL_LIBS})
 
 install(
   TARGETS glad
-  RUNTIME
-    DESTINATION "lib/"
+  LIBRARY
+    DESTINATION lib/
     COMPONENT core
 )

@@ -16,3 +16,6 @@
 [submodule "enet"]
 	path = enet
 	url = https://github.com/lsalzman/enet
+[submodule "tiny-process-library"]
+	path = tiny-process-library
+	url = https://github.com/eidheim/tiny-process-library

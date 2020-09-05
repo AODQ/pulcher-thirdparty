@@ -5,6 +5,7 @@ LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
 
 add_subdirectory(glad)
 add_subdirectory(imgui)
+add_subdirectory(tiny-process-library)
 
 ## glfw
 set(GLFW_BUILD_TESTS OFF CACHE INTERNAL "")

@@ -42,7 +42,7 @@ target_precompile_headers(
 )
 
 ## spdlog
-set(SPDLOG_BUILD_SHARED ON CACHE INTERNAL "")
+set(SPDLOG_BUILD_SHARED OFF CACHE INTERNAL "")
 set(SPDLOG_ENABLE_PCH ON CACHE INTERNAL "")
 set(SPDLOG_INSTALL ON CACHE INTERNAL "")
 add_subdirectory(spdlog)

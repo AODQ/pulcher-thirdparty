@@ -4,9 +4,6 @@
 [submodule "cxxopts"]
 	path = cxxopts
 	url = https://github.com/jarro2783/cxxopts
-[submodule "json"]
-	path = json
-	url = https://github.com/nlohmann/json
 [submodule "glm"]
 	path = glm
 	url = https://github.com/aodq/glm
@@ -19,3 +16,6 @@
 [submodule "tiny-process-library"]
 	path = tiny-process-library
 	url = https://github.com/eidheim/tiny-process-library
+[submodule "cjson"]
+	path = cjson
+	url = https://github.com/davegamble/cjson

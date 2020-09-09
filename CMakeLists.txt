@@ -16,9 +16,7 @@ set(GLFW_INSTALL OFF CACHE INTERNAL "")
 add_subdirectory(glfw)
 
 ## json
-set(JSON_BuildTests OFF CACHE INTERNAL "")
-set(JSON_Install OFF CACHE INTERNAL "")
-add_subdirectory(json)
+add_subdirectory(cjson)
 
 ## STB image
 add_library(stb_image INTERFACE)
@@ -43,7 +41,7 @@ target_precompile_headers(
 )
 
 ## spdlog
-set(SPDLOG_BUILD_SHARED OFF CACHE INTERNAL "")
+set(SPDLOG_BUILD_SHARED ON CACHE INTERNAL "")
 set(SPDLOG_ENABLE_PCH ON CACHE INTERNAL "")
 set(SPDLOG_INSTALL ON CACHE INTERNAL "")
 add_subdirectory(spdlog)

@@ -1,4 +1,4 @@
-add_library(sokol STATIC)
+add_library(sokol SHARED)
 
 target_include_directories(sokol PUBLIC include/)
 
@@ -14,3 +14,10 @@ target_compile_definitions(
 )
 
 target_link_libraries(sokol glad imgui spdlog)
+
+install(
+  TARGETS sokol
+  LIBRARY
+    DESTINATION lib/
+    COMPONENT core
+)

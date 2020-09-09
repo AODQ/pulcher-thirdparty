@@ -5,6 +5,7 @@ LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
 
 add_subdirectory(glad)
 add_subdirectory(imgui)
+add_subdirectory(sokol)
 add_subdirectory(tiny-process-library)
 
 ## glfw
@@ -19,9 +20,9 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 set(JSON_Install OFF CACHE INTERNAL "")
 add_subdirectory(json)
 
-## STB
-add_library(stb INTERFACE)
-target_include_directories(stb INTERFACE stb/include)
+## STB image
+add_library(stb_image INTERFACE)
+target_include_directories(stb_image INTERFACE stb/include)
 
 ## cxxopts
 add_library(cxxopts INTERFACE)

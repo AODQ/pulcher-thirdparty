@@ -19,3 +19,6 @@
 [submodule "cjson"]
 	path = cjson
 	url = https://github.com/davegamble/cjson
+[submodule "entt"]
+	path = entt
+	url = https://github.com/skypjack/entt

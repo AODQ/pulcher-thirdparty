@@ -8,6 +8,9 @@ add_subdirectory(imgui)
 add_subdirectory(sokol)
 add_subdirectory(tiny-process-library)
 
+## entt
+add_subdirectory(entt)
+
 ## glfw
 set(GLFW_BUILD_TESTS OFF CACHE INTERNAL "")
 set(GLFW_BUILD_EXAMPLES OFF CACHE INTERNAL "")

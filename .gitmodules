@@ -9,7 +9,7 @@
 	url = https://github.com/aodq/glm
 [submodule "glfw"]
 	path = glfw
-	url = https://github.com/aodq/glfw
+	url = https://github.com/glfw/glfw
 [submodule "enet"]
 	path = enet
 	url = https://github.com/lsalzman/enet

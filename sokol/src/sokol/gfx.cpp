@@ -11,7 +11,7 @@
       spdlog::critical( \
         "sokol assertion failed; {}@{} {}", __FILE__, __LINE__, #c \
       ); \
-      exit(0); \
+      abort(); \
     } \
   }
 

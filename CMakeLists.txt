@@ -17,8 +17,10 @@ add_subdirectory(entt)
 set(GLFW_BUILD_TESTS OFF CACHE INTERNAL "")
 set(GLFW_BUILD_EXAMPLES OFF CACHE INTERNAL "")
 set(GLFW_BUILD_DOCS OFF CACHE INTERNAL "")
-set(GLFW_INSTALL OFF CACHE INTERNAL "")
+set(GLFW_INSTALL ON CACHE INTERNAL "")
+set(BUILD_SHARED_LIBS "" ON)
 add_subdirectory(glfw)
+set(BUILD_SHARED_LIBS "" OFF)
 
 ## json
 add_subdirectory(cjson)

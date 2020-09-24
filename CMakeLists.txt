@@ -6,8 +6,8 @@ LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
 add_subdirectory(glad)
 add_subdirectory(imgui)
 add_subdirectory(sokol)
+add_subdirectory(argparse)
 add_subdirectory(tiny-process-library)
-
 
 ## entt
 option(BUILD_TESTING "" OFF)
@@ -28,10 +28,6 @@ add_subdirectory(cjson)
 ## STB image
 add_library(stb_image INTERFACE)
 target_include_directories(stb_image INTERFACE stb/include)
-
-## cxxopts
-add_library(cxxopts INTERFACE)
-target_include_directories(cxxopts INTERFACE cxxopts/include)
 
 ## GLM
 add_library(glm INTERFACE)

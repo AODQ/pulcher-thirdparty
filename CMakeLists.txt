@@ -8,7 +8,9 @@ add_subdirectory(imgui)
 add_subdirectory(sokol)
 add_subdirectory(tiny-process-library)
 
+
 ## entt
+option(BUILD_TESTING "" OFF)
 add_subdirectory(entt)
 
 ## glfw

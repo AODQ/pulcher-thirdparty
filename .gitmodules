@@ -15,7 +15,7 @@
 	url = https://github.com/eidheim/tiny-process-library
 [submodule "cjson"]
 	path = cjson
-	url = https://github.com/davegamble/cjson
+	url = https://github.com/aodq/cjson
 [submodule "entt"]
 	path = entt
 	url = https://github.com/skypjack/entt

@@ -574,7 +574,7 @@
 #include <stdbool.h>
 
 #ifndef SOKOL_API_DECL
-#if defined(_WIN32) && defined(SOKOL_DLL) && defined(SOKOL_IMPL)
+#if defined(_WIN32) && defined(SOKOL_DLL)
 #define SOKOL_API_DECL __declspec(dllexport)
 #elif defined(_WIN32) && defined(SOKOL_DLL)
 #define SOKOL_API_DECL __declspec(dllimport)
@@ -13197,7 +13197,7 @@ _SOKOL_PRIVATE bool _sg_validate_shader_desc(const sg_shader_desc* desc) {
                         if (u_desc->type != SG_UNIFORMTYPE_INVALID) {
                             SOKOL_VALIDATE(uniforms_continuous, _SG_VALIDATE_SHADERDESC_NO_CONT_UB_MEMBERS);
                             #if defined(SOKOL_GLES2) || defined(SOKOL_GLES3)
-                            SOKOL_VALIDATE(u_desc->name, _SG_VALIDATE_SHADERDESC_UB_MEMBER_NAME);
+                            SOKOL_VALIDATE(0 != u_desc->name, _SG_VALIDATE_SHADERDESC_UB_MEMBER_NAME);
                             #endif
                             const int array_count = u_desc->array_count;
                             uniform_offset += _sg_uniform_size(u_desc->type, array_count);
@@ -13222,7 +13222,7 @@ _SOKOL_PRIVATE bool _sg_validate_shader_desc(const sg_shader_desc* desc) {
                 if (img_desc->type != _SG_IMAGETYPE_DEFAULT) {
                     SOKOL_VALIDATE(images_continuous, _SG_VALIDATE_SHADERDESC_NO_CONT_IMGS);
                     #if defined(SOKOL_GLES2)
-                    SOKOL_VALIDATE(img_desc->name, _SG_VALIDATE_SHADERDESC_IMG_NAME);
+                    SOKOL_VALIDATE(0 != img_desc->name, _SG_VALIDATE_SHADERDESC_IMG_NAME);
                     #endif
                 }
                 else {
@@ -13253,7 +13253,7 @@ _SOKOL_PRIVATE bool _sg_validate_pipeline_desc(const sg_pipeline_desc* desc) {
         }
         SOKOL_VALIDATE(desc->layout.attrs[0].format != SG_VERTEXFORMAT_INVALID, _SG_VALIDATE_PIPELINEDESC_NO_ATTRS);
         const _sg_shader_t* shd = _sg_lookup_shader(&_sg.pools, desc->shader.id);
-        SOKOL_VALIDATE(shd, _SG_VALIDATE_PIPELINEDESC_SHADER);
+        SOKOL_VALIDATE(0 != shd, _SG_VALIDATE_PIPELINEDESC_SHADER);
         if (shd) {
             SOKOL_VALIDATE(shd->slot.state == SG_RESOURCESTATE_VALID, _SG_VALIDATE_PIPELINEDESC_SHADER);
             bool attrs_cont = true;
@@ -13299,7 +13299,7 @@ _SOKOL_PRIVATE bool _sg_validate_pass_desc(const sg_pass_desc* desc) {
             }
             SOKOL_VALIDATE(atts_cont, _SG_VALIDATE_PASSDESC_NO_CONT_COLOR_ATTS);
             const _sg_image_t* img = _sg_lookup_image(&_sg.pools, att->image.id);
-            SOKOL_VALIDATE(img && img->slot.state == SG_RESOURCESTATE_VALID, _SG_VALIDATE_PASSDESC_IMAGE);
+            SOKOL_VALIDATE((0 != img) && (img->slot.state == SG_RESOURCESTATE_VALID), _SG_VALIDATE_PASSDESC_IMAGE);
             SOKOL_VALIDATE(att->mip_level < img->cmn.num_mipmaps, _SG_VALIDATE_PASSDESC_MIPLEVEL);
             if (img->cmn.type == SG_IMAGETYPE_CUBE) {
                 SOKOL_VALIDATE(att->face < 6, _SG_VALIDATE_PASSDESC_FACE);
@@ -13328,7 +13328,7 @@ _SOKOL_PRIVATE bool _sg_validate_pass_desc(const sg_pass_desc* desc) {
         if (desc->depth_stencil_attachment.image.id != SG_INVALID_ID) {
             const sg_attachment_desc* att = &desc->depth_stencil_attachment;
             const _sg_image_t* img = _sg_lookup_image(&_sg.pools, att->image.id);
-            SOKOL_VALIDATE(img && img->slot.state == SG_RESOURCESTATE_VALID, _SG_VALIDATE_PASSDESC_IMAGE);
+            SOKOL_VALIDATE((0 != img) && (img->slot.state == SG_RESOURCESTATE_VALID), _SG_VALIDATE_PASSDESC_IMAGE);
             SOKOL_VALIDATE(att->mip_level < img->cmn.num_mipmaps, _SG_VALIDATE_PASSDESC_MIPLEVEL);
             if (img->cmn.type == SG_IMAGETYPE_CUBE) {
                 SOKOL_VALIDATE(att->face < 6, _SG_VALIDATE_PASSDESC_FACE);
@@ -14566,6 +14566,7 @@ SOKOL_API_IMPL void sg_apply_uniforms(sg_shader_stage stage, int ub_index, const
 
 SOKOL_API_IMPL void sg_draw(int base_element, int num_elements, int num_instances) {
     SOKOL_ASSERT(_sg.valid);
+    SOKOL_ASSERT((base_element >= 0) && (num_elements >= 0) && (num_instances >= 0));
     #if defined(SOKOL_DEBUG)
         if (!_sg.bindings_valid) {
             SOKOL_LOG("attempting to draw without resource bindings");
@@ -14581,6 +14582,13 @@ SOKOL_API_IMPL void sg_draw(int base_element, int num_elements, int num_instance
     }
     if (!_sg.bindings_valid) {
         _SG_TRACE_NOARGS(err_bindings_invalid);
+        return;
+    }
+    /* attempting to draw with zero elements or instances is not technically an
+       error, but might be handled as an error in the backend API (e.g. on Metal)
+    */
+    if ((0 == num_elements) || (0 == num_instances)) {
+        _SG_TRACE_NOARGS(err_draw_invalid);
         return;
     }
     _sg_draw(base_element, num_elements, num_instances);

@@ -14,6 +14,12 @@ add_subdirectory(tiny-process-library)
 option(BUILD_TESTING "" OFF)
 add_subdirectory(entt)
 
+target_precompile_headers(
+  EnTT
+  INTERFACE
+    entt/src/entt/entt.hpp
+)
+
 ## glfw
 set(GLFW_BUILD_TESTS OFF CACHE INTERNAL "")
 set(GLFW_BUILD_EXAMPLES OFF CACHE INTERNAL "")

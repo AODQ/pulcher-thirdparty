@@ -4,7 +4,6 @@
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
 
 add_subdirectory(glad)
-add_subdirectory(cute)
 add_subdirectory(imgui)
 add_subdirectory(sokol)
 add_subdirectory(fmod)

@@ -18,6 +18,21 @@ install(
   FILES_MATCHING PATTERN "libfmod.so*"
 )
 
+elseif (PULCHER_PLATFORM STREQUAL "macOS")
+
+set_target_properties(
+  fmod
+    PROPERTIES
+    INTERFACE_LINK_LIBRARIES ${CMAKE_CURRENT_SOURCE_DIR}/lib/macos/libfmod.dylib
+)
+
+install(
+  DIRECTORY lib/macos/
+  DESTINATION lib/
+  COMPONENT core
+  FILES_MATCHING PATTERN "libfmod.dylib*"
+)
+
 elseif (PULCHER_PLATFORM STREQUAL "Win64" OR PULCHER_PLATFORM STREQUAL "Win32")
 
 set_target_properties(

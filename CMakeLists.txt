@@ -78,6 +78,4 @@ target_sources(
 
 if (PULCHER_PLATFORM STREQUAL "Win64")
   target_link_libraries(enet PUBLIC winmm ws2_32)
-elseif (PULCHER_PLATFORM STREQUAL "Linux")
-  target_link_libraries(enet)
 endif()

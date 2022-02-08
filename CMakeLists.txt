@@ -4,12 +4,21 @@
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
 
 add_subdirectory(micropather)
+add_subdirectory(chaiscript)
 add_subdirectory(glad)
 add_subdirectory(imgui)
 add_subdirectory(sokol)
 add_subdirectory(fmod)
 add_subdirectory(argparse)
 add_subdirectory(tiny-process-library)
+
+# box2d
+option(BOX2D_BUILD_UNIT_TESTS "" OFF)
+option(BOX2D_BUILD_TESTBED "" OFF)
+option(BOX2D_BUILD_DOCS "" OFF)
+option(BOX2D_USER_SETTINGS "" OFF)
+option(BUILD_SHARED_LIBS "" ON)
+add_subdirectory(box2d)
 
 ## entt
 option(BUILD_TESTING "" OFF)
